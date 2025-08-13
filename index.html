@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Путь Героя в Психостоматологии</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .foundation {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .foundation h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .foundation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .foundation-item {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .levels-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .level {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .level:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .level-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .level-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
+            color: white;
+            margin-right: 15px;
+        }
+        
+        .level-1 .level-number { background: #ff6b6b; }
+        .level-2 .level-number { background: #ffa726; }
+        .level-3 .level-number { background: #66bb6a; }
+        .level-4 .level-number { background: #42a5f5; }
+        .level-5 .level-number { background: #ab47bc; }
+        
+        .level-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .level-subtitle {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .hero-phase {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .hero-phase-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .criteria {
+            background: #fff9e6;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ffa726;
+        }
+        
+        .criteria-title {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 8px;
+        }
+        
+        .treasure {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #66bb6a;
+            text-align: center;
+        }
+        
+        .treasure-title {
+            font-weight: bold;
+            color: #388e3c;
+            margin-bottom: 8px;
+        }
+        
+        .example {
+            background: #f3e5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ab47bc;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #7b1fa2;
+            margin-bottom: 8px;
+        }
+        
+        .progression {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .progression h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .flow-step {
+            flex: 1;
+            min-width: 200px;
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .flow-step::after {
+            content: "→";
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #667eea;
+        }
+        
+        .flow-step:last-child::after {
+            display: none;
+        }
+        
+        .integration {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .integration h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .integration-item {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 5px solid #667eea;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin: 5px 5px 5px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .levels-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .flow-diagram {
+                flex-direction: column;
+            }
+            
+            .flow-step::after {
+                content: "↓";
+                right: 50%;
+                bottom: -25px;
+                top: auto;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦷 Путь Героя в Психостоматологии</h1>
+            <p>5-уровневая система экспозиционной терапии на основе мономифа Кэмпбелла</p>
+        </div>
+
+        <div class="foundation">
+            <h2>🏗️ Фундамент системы (Дни 1-4)</h2>
+            <div class="foundation-grid">
+                <div class="foundation-item">
+                    <h3>📊 Диагностика</h3>
+                    <p><strong>День 1-2:</strong> Треугольник Казакова (АЖ/СП/ОЧЛ)<br>
+                    <strong>День 3:</strong> Выбор пути героя<br>
+                    <strong>День 4:</strong> Самодиагностика и дневник</p>
+                </div>
+                <div class="foundation-item">
+                    <h3>🎯 Результат</h3>
+                    <p>✅ Понимание внутренней динамики<br>
+                    ✅ Контакт с ОЧЛ<br>
+                    ✅ Навыки дневниковой диагностики<br>
+                    ✅ Готовность к пути героя</p>
+                </div>
+                <div class="foundation-item">
+                    <h3>🔬 ЭЭГ-интеграция</h3>
+                    <p>Объективная диагностика активации лимбической системы и готовности к экспозиционной терапии</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="levels-container">
+            <div class="level level-1">
+                <div class="level-header">
+                    <div class="level-number">1</div>
+                    <div>
+                        <div class="level-title">Призыв к приключению</div>
+                        <div class="level-subtitle">Выход на экспозиции</div>
+                    </div>
+                </div>
+                
+                <div class="hero-phase">
+                    <div class="hero-phase-title">🏠 Обычный мир → 🚪 Особый мир</div>
+                    <p>Клиент учится выходить из привычных паттернов и выполнять первые экспозиции "ради СП"</p>
+                </div>
+
+                <div class="criteria">
+                    <div class="criteria-title">✅ Критерии перехода на Уровень 2:</div>
+                    <p>• Стабильное выполнение экспозиций<br>
+                    • Умение не включаться на пыхтение АЖ<br>
+                    • Регулярное заполнение дневника</p>
+                </div>
+
+                <div class="treasure">
+                    <div class="treasure-title">💎 Сокровище уровня</div>
+                    <p>Способность выдерживать "пыхтение дракона" и действовать вопреки АЖ</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📝 Пример: Певучая</div>
+                    <p>А=1, Б=9. Не включилась на пыхтение. Вызвала драконов решением о переезде. <span class="tag">Готова к Уровню 2</span></p>
+                </div>
+            </div>
+
+            <div class="level level-2">
+                <div class="level-header">
+                    <div class="level-number">2</div>
+                    <div>
+                        <div class="level-title">Союзники и враги</div>
+                        <div class="level-subtitle">Калибровка экспозиций</div>
+                    </div>
+                </div>
+                
+                <div class="hero-phase">
+                    <div class="hero-phase-title">🧙‍♂️ Встреча с наставником → ⚔️ Испытания</div>
+                    <p>Калибровка сложности, важности и телесной обратной связи. СП как внутренний наставник.</p>
+                </div>
+
+                <div class="criteria">
+                    <div class="criteria-title">✅ Критерии перехода на Уровень 3:</div>
+                    <p>• Выполнение ВСЕЙ домашки (всех экспозиций)<br>
+                    • Понимание связи сложность→важность→тело<br>
+                    • Готовность к оценке ОЧЛ</p>
+                </div>
+
+                <div class="treasure">
+                    <div class="treasure-title">💎 Сокровище уровня</div>
+                    <p>Понимание своих реальных возможностей и калибровка под них</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📝 Пример: Таня</div>
+                    <p>Сложность 7.5-10/10. Важность для ОЧЛ 7-10/10. Телесное сопротивление откалибровано. <span class="tag">На Уровне 2</span></p>
+                </div>
+            </div>
+
+            <div class="level level-3">
+                <div class="level-header">
+                    <div class="level-number">3</div>
+                    <div>
+                        <div class="level-title">Сокровенное место</div>
+                        <div class="level-subtitle">Мини-сокровища (Селекция)</div>
+                    </div>
+                </div>
+                
+                <div class="hero-phase">
+                    <div class="hero-phase-title">🏰 Святилище → 💎 Испытание сокровищем</div>
+                    <p>ОЧЛ становится экспертом-оценщиком. Селектирует действия по ценности.</p>
+                </div>
+
+                <div class="criteria">
+                    <div class="criteria-title">✅ Критерии перехода на Уровень 4:</div>
+                    <p>• Четкое понимание "сокровищных" действий<br>
+                    • ОЧЛ дает стабильные оценки<br>
+                    • Мотивация концентрироваться на ценном</p>
+                </div>
+
+                <div class="treasure">
+                    <div class="treasure-title">💎 Сокровище уровня</div>
+                    <p>Знание точных действий, которые дают энергию и радость ОЧЛ</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📝 Пример: Гульназ</div>
+                    <p>"За твой контент 0%, за СП-контент 10%". ОЧЛ четко селектирует ценность. <span class="tag">Переход на Уровень 4</span></p>
+                </div>
+            </div>
+
+            <div class="level level-4">
+                <div class="level-header">
+                    <div class="level-number">4</div>
+                    <div>
+                        <div class="level-title">Главное испытание</div>
+                        <div class="level-subtitle">Удержание сокровищ</div>
+                    </div>
+                </div>
+                
+                <div class="hero-phase">
+                    <div class="hero-phase-title">💀 Смерть старого → ⚡ Возрождение нового</div>
+                    <p>Отказ от "пустых" действий. Концентрация на "сокровищных" + возможное расширение.</p>
+                </div>
+
+                <div class="criteria">
+                    <div class="criteria-title">✅ Критерии перехода на Уровень 5:</div>
+                    <p>• Стабильность в "сокровищных" действиях<br>
+                    • Естественность выполнения<br>
+                    • Готовность к созидательным вызовам</p>
+                </div>
+
+                <div class="treasure">
+                    <div class="treasure-title">💎 Сокровище уровня</div>
+                    <p>Мастерство в действиях, максимально ценных для ОЧЛ</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📝 Стратегии</div>
+                    <p><strong>Фокус:</strong> Только "сокровищные" действия<br>
+                    <strong>Расширение:</strong> "Сокровищные" как база + новые <span class="tag">Выбор клиента</span></p>
+                </div>
+            </div>
+
+            <div class="level level-5">
+                <div class="level-header">
+                    <div class="level-number">5</div>
+                    <div>
+                        <div class="level-title">Возвращение с эликсиром</div>
+                        <div class="level-subtitle">Новый уровень (Созидание)</div>
+                    </div>
+                </div>
+                
+                <div class="hero-phase">
+                    <div class="hero-phase-title">🔄 Обратная дорога → 🌍 Мастер двух миров</div>
+                    <p>Переход к созидательным экспозициям. Герой больше не борется за выживание, а творит.</p>
+                </div>
+
+                <div class="criteria">
+                    <div class="criteria-title">✅ Результат программы:</div>
+                    <p>• Способность создавать новое<br>
+                    • Полная интеграция ОЧЛ<br>
+                    • Исцеление зуба как символ целостности</p>
+                </div>
+
+                <div class="treasure">
+                    <div class="treasure-title">💎 Эликсир</div>
+                    <p>Творческая сила и способность создавать свою реальность</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📝 Созидательные экспозиции</div>
+                    <p>Создание проектов, бизнесов, произведений искусства. ОЧЛ как источник творческой энергии. <span class="tag">Мастерство</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="progression">
+            <h2>🔄 Механика прогрессии и откатов</h2>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <h3>📈 Прогрессия</h3>
+                    <p>Выполнение критериев → переход на следующий уровень</p>
+                </div>
+                <div class="flow-step">
+                    <h3>📉 Откат</h3>
+                    <p>Не выполнение экспозиций → возврат на уровень назад</p>
+                </div>
+                <div class="flow-step">
+                    <h3>🎯 Восстановление</h3>
+                    <p>Возврат к выполнению → повторный переход вперед</p>
+                </div>
+            </div>
+            
+            <div style="background: #fff3cd; padding: 20px; border-radius: 10px; border-left: 5px solid #ffc107; margin-top: 20px;">
+                <h3 style="color: #856404; margin-bottom: 10px;">⚠️ Универсальное правило откатов</h3>
+                <p style="color: #856404; margin: 0;"><strong>Не делаешь экспозиции = откат на уровень назад</strong><br>
+                Это защищает от регресса и поддерживает мотивацию к действию</p>
+            </div>
+        </div>
+
+        <div class="integration">
+            <h2>🔗 Интеграция с существующей системой</h2>
+            <div class="integration-grid">
+                <div class="integration-item">
+                    <h3>🧠 ЭЭГ-контроль</h3>
+                    <p><strong>Контрольные точки:</strong><br>
+                    • День 10: Адаптация к экспозициям<br>
+                    • День 25: После основного испытания<br>
+                    • День 40: Интеграция<br>
+                    • День 49: Итоговая оценка</p>
+                </div>
+                <div class="integration-item">
+                    <h3>📊 Дневниковая система</h3>
+                    <p><strong>Расширенные метрики:</strong><br>
+                    • Кому служил - АЖ или СП?<br>
+                    • Интенсивность пыхтения (1-10)<br>
+                    • Качество связи с ОЧЛ (1-10)<br>
+                    • Оценки сокровищ от ОЧЛ</p>
+                </div>
+                <div class="integration-item">
+                    <h3>🎯 Персонализация</h3>
+                    <p><strong>Адаптация под:</strong><br>
+                    • Тип зуба (резцы, клыки, моляры)<br>
+                    • Тип АЖ (PAS-родитель, партнер, перфекционист)<br>
+                    • Тип ОЧЛ (агрессивная, сексуальная, творческая)<br>
+                    • ЭЭГ-профиль клиента</p>
+                </div>
+                <div class="integration-item">
+                    <h3>👨‍🏫 Поддержка тренеров</h3>
+                    <p><strong>Инструменты:</strong><br>
+                    • Алгоритмы определения уровня<br>
+                    • Банк экспозиций для каждого уровня<br>
+                    • Протоколы работы с откатами<br>
+                    • Критерии готовности к переходам</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
